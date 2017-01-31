@@ -12,4 +12,13 @@ public class DataNode{
 	public int[] getKey(){
 		return key;
 	}
+	public int getLabel(){
+		return label;
+	}
+	public ArrayList<NDPair> getNeighbors(int k){
+		return neighbors;
+	}
+	public ArrayList<NDPair> getNeighbors(){
+		return neighbors;
+	}
 }

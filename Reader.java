@@ -1,8 +1,9 @@
 import java.io.*;
+import java.util.ArrayList;
 
 public class Reader {
 
-    private ArrayList <DataNode> dnal;
+    private static ArrayList <DataNode> dnal;
     
     public static void main(String [] args) {
 
@@ -25,7 +26,7 @@ public class Reader {
 
             while((line = bufferedReader.readLine()) != null) {
                 
-                String[] splited = str.split(" ");
+                String[] splited = line.split(" ");
                 int label = Integer.parseInt(splited[splited.length - 1]);
                 int[] key = new int[784];
 
@@ -61,7 +62,7 @@ public class Reader {
     private void setDistance(ArrayList <DataNode> list){
         
 
-        for(int i=0; i<list.length; i++){
+        for(int i=0; i<list.size(); i++){
              for(int j=0; j<i; j++){
 
                 DataNode a = list.get(i);
@@ -69,10 +70,10 @@ public class Reader {
                 double distance = getDistance(a.getKey(), b.getKey()); 
 
                 NDPair aPair = new NDPair(b,distance );
-                a.addNeightbor(aPair);
+                a.addNeighbor(aPair);
 
                 NDPair bPair = new NDPair(a,distance );
-                b.addNeightbor(bPair);
+                b.addNeighbor(bPair);
 
 
              }

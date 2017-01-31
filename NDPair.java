@@ -8,4 +8,10 @@ public class NDPair{
 		neighbor = n;
 		dist = distance;
 	}
+	public double getDist(){
+		return dist;
+	}
+	public DataNode getNeighbor(){
+		return neighbor;
+	}
 }
