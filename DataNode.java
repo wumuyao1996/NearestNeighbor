@@ -4,10 +4,36 @@ public class DataNode{
 	int[] key;
 	int label;
 	ArrayList<NDPair> neighbors;
-	public DataNode(int [] key, int label){
+	int k;
+
+
+	public DataNode(int [] key, int label, int k){
 	}
 	public void addNeighbor(NDPair e){
-		neighbors.add(e);
+		
+		if(neighbors.size() < k){
+				neighbors.add(e);
+				return;
+		}
+
+		boolean flag = false;
+		NDPair largestNeighbor = neighbors.get(1);
+		double newDistance = e.getDist();
+		for(int i=0; i<neighbors.size(); i++){	
+			if(newDistance <= neighbors.get(i).getDist() ){
+				flag = true;
+			}
+			if(largestNeighbor.getDist() < neighbors.get(i).getDist()){
+				largestNeighbor = neighbors.get(i);
+			}
+		}
+
+		if(flag){
+			neighbors.add(e);
+			neighbors.remove(largestNeighbor);
+		}
+
+		
 	}
 	public int[] getKey(){
 		return key;
