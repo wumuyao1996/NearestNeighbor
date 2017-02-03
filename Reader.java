@@ -18,7 +18,7 @@ public class Reader {
         // This will reference one line at a time
         String line = null;
 
-        kValue = 3;
+        kValue = 5;
         
         
         dnal = new ArrayList <DataNode> ();
@@ -98,7 +98,9 @@ public class Reader {
                 int label = majorityLabel(testData.get(i).getNeighbors());
                 
                 if(label != testData.get(i).getLabel()){
+
                     numErrors += 1;
+
                 }
             }
 
@@ -160,22 +162,31 @@ public class Reader {
         int maxLabel = neighbors.get(0).getNeighbor().getLabel();;
         int count;
         int label;
+
+
         for(int i=0; i<neighbors.size(); i++){
             count = 0;
             label = neighbors.get(i).getNeighbor().getLabel();
-
+            //System.out.println("actual label " + label);
             for(int j=0; j<neighbors.size(); j++){
+          //      System.out.println("comparing to label " + neighbors.get(j).getNeighbor().getLabel());
                 if(neighbors.get(j).getNeighbor().getLabel() == label){
                     count++;
                 }
+                
 
             }
 
             if(count >= maxCount){
                 maxLabel = label;
+                maxCount = count;
             }
 
         }
+
+        //System.out.println(" maxLabel = "+ maxLabel);
+        //System.out.println("");
+        //System.out.println("");
 
         return maxLabel;
     }

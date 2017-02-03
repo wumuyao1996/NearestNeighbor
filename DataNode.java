@@ -23,6 +23,7 @@ public class DataNode{
 		boolean flag = false;
 		NDPair largestNeighbor = neighbors.get(0);
 		double newDistance = e.getDist();
+
 		for(int i=0; i<neighbors.size(); i++){	
 			if(newDistance <= neighbors.get(i).getDist() ){
 				flag = true;
@@ -33,8 +34,8 @@ public class DataNode{
 		}
 
 		if(flag){
-			neighbors.add(e);
 			neighbors.remove(largestNeighbor);
+			neighbors.add(e);
 		}
 
 		
