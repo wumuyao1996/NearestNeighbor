@@ -18,7 +18,7 @@ public class Reader {
         // This will reference one line at a time
         String line = null;
 
-        kValue = 5;
+        kValue = 3;
         
         
         dnal = new ArrayList <DataNode> ();
@@ -195,7 +195,7 @@ public class Reader {
 
         double total = 0;
         for(int i=0; i<a.length; i++){
-            double sum = a[i] + b[i];
+            double sum = a[i] - b[i];
             double square = sum * sum;
             total = total + square; 
         }
