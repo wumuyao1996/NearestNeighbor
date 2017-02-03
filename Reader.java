@@ -19,9 +19,10 @@ public class Reader {
         String line = null;
 
         kValue = 1;
-        ArrayList
+        
         
         dnal = new ArrayList <DataNode> ();
+         testData = new ArrayList <DataNode> ();
 
         try {
             // FileReader reads text files in the default encoding.
@@ -33,6 +34,7 @@ public class Reader {
                 new BufferedReader(fileReader);
 
             while((line = bufferedReader.readLine()) != null) {
+                
                 
                 String[] splited = line.split(" ");
                 int label = Integer.parseInt(splited[splited.length - 1]);
@@ -46,20 +48,25 @@ public class Reader {
                 DataNode node = new DataNode(key, label, kValue);
 
                 dnal.add(node);
+
             }  
+
+                        // Always close files.
+            bufferedReader.close(); 
 
 
 ///*********************   TEST DATA**************************************)
-                fileReader = 
+                FileReader fileReader2 = 
                 new FileReader(testDataFile);
 
-                bufferedReader = 
-                new BufferedReader(fileReader);
+                BufferedReader bufferedReader2 = 
+                new BufferedReader(fileReader2);
 
+                 String line2 = null;
 
-            while((line = bufferedReader.readLine()) != null) {
-                
-                String[] splited = line.split(" ");
+            while((line2 = bufferedReader2.readLine()) != null) {
+                System.out.println(line2);
+                String[] splited = line2.split(" ");
                 int label = Integer.parseInt(splited[splited.length - 1]);
                 int[] key = new int[784];
 
@@ -77,7 +84,7 @@ public class Reader {
 
             for(int i=0; i<testData.size(); i++){
                 for(int j=0; j<dnal.size(); j++){
-                    DataNode dnode = dnal.get(j);
+                    DataNode dnode = (DataNode) dnal.get(j);
                     double distance = getDistance(dnode.getKey(), testData.get(i).getKey());
                     NDPair newPair = new NDPair(dnode, distance);
                     testData.get(i).addNeighbor(newPair);
@@ -87,13 +94,13 @@ public class Reader {
 
 
 
-
-
-
-
-
             // Always close files.
-            bufferedReader.close();         
+            bufferedReader2.close(); 
+
+
+
+
+        
         }
         catch(FileNotFoundException ex) {
             System.out.println(
