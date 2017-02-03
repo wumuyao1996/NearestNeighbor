@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 
 public class DataNode{
-	int[] key;
+	double[] key;
 	int label;
 	ArrayList<NDPair> neighbors;
 	int k;
 
 
-	public DataNode(int [] _key, int _label, int _k){
+	public DataNode(double [] _key, int _label, int _k){
 		key = _key;
 		label = _label;
 		k = _k;
@@ -40,7 +40,7 @@ public class DataNode{
 
 		
 	}
-	public int[] getKey(){
+	public double[] getKey(){
 		return key;
 	}
 	public int getLabel(){
