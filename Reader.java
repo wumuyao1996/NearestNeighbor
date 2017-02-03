@@ -13,12 +13,12 @@ public class Reader {
 
         // The name of the file to open.
         String fileName = "hw2train.txt";
-        String testDataFile = "hw2validate.txt";
+        String testDataFile = "hw2train.txt";
 
         // This will reference one line at a time
         String line = null;
 
-        kValue = 1;
+        kValue = 3;
         
         
         dnal = new ArrayList <DataNode> ();
@@ -81,17 +81,28 @@ public class Reader {
 
 
 
+
+            int numErrors= 0;
             for(int i=0; i<testData.size(); i++){
                 for(int j=0; j<dnal.size(); j++){
+                    //get nodes
                     DataNode dnode =  dnal.get(j);
                     DataNode tnode = testData.get(i);
+
+                    //get distance
                     double distance = getDistance( dnode.getKey(), tnode.getKey());
                     NDPair newPair = new NDPair(dnode, distance);
                     testData.get(i).addNeighbor(newPair);
                 }
 
+                int label = majorityLabel(testData.get(i).getNeighbors());
+                
+                if(label != testData.get(i).getLabel()){
+                    numErrors += 1;
+                }
             }
 
+            System.out.println(numErrors + "/" + testData.size() );
 
 
             // Always close files.
@@ -141,6 +152,33 @@ public class Reader {
 
         }
     } 
+
+
+    private static int majorityLabel(ArrayList <NDPair> neighbors){
+        
+        int maxCount = 0;
+        int maxLabel = neighbors.get(0).getNeighbor().getLabel();;
+        int count;
+        int label;
+        for(int i=0; i<neighbors.size(); i++){
+            count = 0;
+            label = neighbors.get(i).getNeighbor().getLabel();
+
+            for(int j=0; j<neighbors.size(); j++){
+                if(neighbors.get(j).getNeighbor().getLabel() == label){
+                    count++;
+                }
+
+            }
+
+            if(count >= maxCount){
+                maxLabel = label;
+            }
+
+        }
+
+        return maxLabel;
+    }
 
     private static double getDistance(int[] a, int[] b){
 

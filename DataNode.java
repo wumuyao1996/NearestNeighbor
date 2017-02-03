@@ -8,10 +8,10 @@ public class DataNode{
 
 
 	public DataNode(int [] _key, int _label, int _k){
-
 		key = _key;
 		label = _label;
 		k = _k;
+		neighbors = new ArrayList<NDPair> ();	
 	}
 	public void addNeighbor(NDPair e){
 		
@@ -21,7 +21,7 @@ public class DataNode{
 		}
 
 		boolean flag = false;
-		NDPair largestNeighbor = neighbors.get(1);
+		NDPair largestNeighbor = neighbors.get(0);
 		double newDistance = e.getDist();
 		for(int i=0; i<neighbors.size(); i++){	
 			if(newDistance <= neighbors.get(i).getDist() ){
@@ -45,9 +45,7 @@ public class DataNode{
 	public int getLabel(){
 		return label;
 	}
-	public ArrayList<NDPair> getNeighbors(int k){
-		return neighbors;
-	}
+
 	public ArrayList<NDPair> getNeighbors(){
 		return neighbors;
 	}
