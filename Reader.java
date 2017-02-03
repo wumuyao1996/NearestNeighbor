@@ -65,7 +65,6 @@ public class Reader {
                  String line2 = null;
 
             while((line2 = bufferedReader2.readLine()) != null) {
-                System.out.println(line2);
                 String[] splited = line2.split(" ");
                 int label = Integer.parseInt(splited[splited.length - 1]);
                 int[] key = new int[784];
@@ -84,8 +83,9 @@ public class Reader {
 
             for(int i=0; i<testData.size(); i++){
                 for(int j=0; j<dnal.size(); j++){
-                    DataNode dnode = (DataNode) dnal.get(j);
-                    double distance = getDistance(dnode.getKey(), testData.get(i).getKey());
+                    DataNode dnode =  dnal.get(j);
+                    DataNode tnode = testData.get(i);
+                    double distance = getDistance( dnode.getKey(), tnode.getKey());
                     NDPair newPair = new NDPair(dnode, distance);
                     testData.get(i).addNeighbor(newPair);
                 }

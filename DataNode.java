@@ -7,7 +7,11 @@ public class DataNode{
 	int k;
 
 
-	public DataNode(int [] key, int label, int k){
+	public DataNode(int [] _key, int _label, int _k){
+
+		key = _key;
+		label = _label;
+		k = _k;
 	}
 	public void addNeighbor(NDPair e){
 		
